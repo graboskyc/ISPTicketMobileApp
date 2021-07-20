@@ -17,7 +17,7 @@ namespace ISPTicketMobileApp
 
         private async void btn_login_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TabbedPage1());
+            await Navigation.PushAsync(new TabbedMenu());
         }
     }
 }

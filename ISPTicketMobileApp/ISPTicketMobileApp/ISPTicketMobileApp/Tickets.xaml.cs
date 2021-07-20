@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ISPTicketMobileApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabbedPage1 : TabbedPage
+    public partial class Tickets : ContentPage
     {
-        public TabbedPage1()
+        public Tickets()
         {
             InitializeComponent();
         }
