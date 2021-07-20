@@ -6,9 +6,18 @@
              IconImageSource="icon_customers.png">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Customers"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Customers" FontSize="24" HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <ListView x:Name="lv_customers">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Name}"></Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
