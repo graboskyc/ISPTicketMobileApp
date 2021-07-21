@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Realms;
+using Realms.Sync;
 
 namespace ISPTicketMobileApp
 {
@@ -22,18 +24,21 @@ namespace ISPTicketMobileApp
 
         protected override async void OnAppearing()
         {
-            try
-            {
-                allCustomers = App.realm_Realm.All<Models.Customer>();
+            //try
+            //{
+                App.realm_partition = "PUBLIC";
+                App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
+                App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
+                allCustomers = App.realm_realm.All<Models.Customer>();
                 _customers = new ObservableCollection<Models.Customer>(allCustomers.ToList());
-                lv_customers.ItemsSource = _customers;
+                lv.ItemsSource = _customers;
 
-            } 
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error Fetching Customers", ex.Message, "OK");
+            //} 
+            //catch (Exception ex)
+            //{
+            //    await DisplayAlert("Error Fetching Customers", ex.Message, "OK");
                 
-            }
+            //}
             base.OnAppearing();
         }
     }
