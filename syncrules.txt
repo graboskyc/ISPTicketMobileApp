@@ -1,0 +1,22 @@
+{
+  "$or": [
+    {
+      "%%partition": "%%user.id"
+    },
+    {
+      "%%partition": "PUBLIC"
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+{
+  "%%partition": "%%user.id"
+}

@@ -6,9 +6,9 @@
              IconImageSource="icon_profile.png">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Profile"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Profile" FontSize="24" HorizontalOptions="CenterAndExpand" />
+            <Label Text="Your phone number:" />
+            <Entry x:Name="txt_phone" IsReadOnly="True"  />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

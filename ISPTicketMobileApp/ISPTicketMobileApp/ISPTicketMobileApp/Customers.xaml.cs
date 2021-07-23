@@ -24,22 +24,33 @@ namespace ISPTicketMobileApp
 
         protected override async void OnAppearing()
         {
-            //try
-            //{
-                App.realm_partition = "PUBLIC";
+            try
+            {
+                App.realm_partition = "PUBLIC"; 
                 App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
                 App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
                 allCustomers = App.realm_realm.All<Models.Customer>();
                 _customers = new ObservableCollection<Models.Customer>(allCustomers.ToList());
                 lv.ItemsSource = _customers;
 
-            //} 
-            //catch (Exception ex)
-            //{
-            //    await DisplayAlert("Error Fetching Customers", ex.Message, "OK");
+            } 
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error Fetching Customers", ex.Message, "OK");
                 
-            //}
+            }
             base.OnAppearing();
+        }
+
+        private async void lv_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ListView lv = (ListView)sender;
+
+            // this assumes your List is bound to a List<Club>
+            Models.Customer c = (Models.Customer)lv.SelectedItem;
+
+            // assuiming Club has an Id property
+            await Navigation.PushAsync(new ViewCustomer(c.Id));
         }
     }
 }

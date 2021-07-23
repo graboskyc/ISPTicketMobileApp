@@ -24,21 +24,21 @@ namespace ISPTicketMobileApp
 
         protected override async void OnAppearing()
         {
-            //try
-            //{
-            App.realm_partition = $"_pk={ App.realm_user.Id }";
+            try
+            {
+            App.realm_partition = App.realm_user.Id;
             App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
             App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
             allTickets = App.realm_realm.All<Models.Ticket>();
             _tickets = new ObservableCollection<Models.Ticket>(allTickets.ToList());
             lv.ItemsSource = _tickets;
 
-            //} 
-            //catch (Exception ex)
-            //{
-            //    await DisplayAlert("Error Fetching Customers", ex.Message, "OK");
+            } 
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error Fetching Tickets", ex.Message, "OK");
 
-            //}
+            }
             base.OnAppearing();
         }
     }

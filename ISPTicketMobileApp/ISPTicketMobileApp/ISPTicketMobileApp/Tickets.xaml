@@ -12,7 +12,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Name}"></Label>
+                                <Label Text="Ticket number: {Binding ticketNumber}"></Label>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -26,7 +26,7 @@ namespace ISPTicketMobileApp.Models
         [Required]
         public string Email { get; set; }
 
-        [MapTo("fullName")]
+        [MapTo("fullname")]
         [Required]
         public string Name { get; set; }
 
