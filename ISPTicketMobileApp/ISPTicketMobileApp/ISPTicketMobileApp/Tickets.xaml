@@ -6,13 +6,25 @@
              IconImageSource="icon_list.png">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Tickets" FontSize="24" HorizontalOptions="CenterAndExpand" />
             <ScrollView>
-                <ListView x:Name="lv" ItemSelected="lv_ItemSelected">
+                <ListView x:Name="lv" ItemSelected="lv_ItemSelected" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding TicketNumber, StringFormat='Ticket Number {0}'}"></Label>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="64"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Status.Option, FallbackValue='???'}" FontSize="64"></Label>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding TicketNumber, StringFormat='Ticket #{0}',FallbackValue='000'}" FontSize="32"></Label>
+                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Technician.Name, FallbackValue='Unknown Tech'}" FontSize="12"></Label>
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

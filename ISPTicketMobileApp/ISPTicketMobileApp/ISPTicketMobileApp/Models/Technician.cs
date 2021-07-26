@@ -15,5 +15,9 @@ namespace ISPTicketMobileApp.Models
         [MapTo("phone")]
         [Required]
         public string Phone { get; set; }
+
+        [MapTo("name")]
+        [Required]
+        public string Name { get; set; }
     }
 }

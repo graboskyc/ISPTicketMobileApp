@@ -29,7 +29,7 @@ namespace ISPTicketMobileApp
                 App.realm_partition = "PUBLIC"; 
                 App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
                 App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
-                allCustomers = App.realm_realm.All<Models.Customer>();
+                allCustomers = App.realm_realm.All<Models.Customer>().OrderBy(i => i.Name);
                 _customers = new ObservableCollection<Models.Customer>(allCustomers.ToList());
                 lv.ItemsSource = _customers;
 

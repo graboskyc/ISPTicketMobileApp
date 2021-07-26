@@ -30,8 +30,11 @@ namespace ISPTicketMobileApp
                 App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
                 App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
                 Models.Ticket t = App.realm_realm.All<Models.Ticket>().FirstOrDefault();
+
                 txt_ticketNum.Text = "Ticket #" + t.TicketNumber.ToString();
                 txt_comment.Text = t.Comment;
+                txt_status.Text = t.Status.Option;
+                txt_tech.Text = t.Technician.Name;
 
             }
             catch (Exception ex)

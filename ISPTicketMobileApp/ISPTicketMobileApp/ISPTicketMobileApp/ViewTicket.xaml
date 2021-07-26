@@ -5,7 +5,16 @@
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="txt_ticketNum" Text="Customer" FontSize="24" HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="txt_comment" IsReadOnly="True"  />
+
+            <Label Text="Status" FontSize="20" />
+            <Entry x:Name="txt_status" />
+
+            <Label Text="Comment" FontSize="20" />
+            <Editor x:Name="txt_comment" AutoSize="TextChanges" FontSize="16" />
+
+            <Label Text="Assigned Tech" FontSize="20" />
+            <Entry x:Name="txt_tech" />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

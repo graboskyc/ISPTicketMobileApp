@@ -5,7 +5,8 @@
     xmlns:local="clr-namespace:ISPTicketMobileApp"
     x:Class="ISPTicketMobileApp.TabbedMenu"
     NavigationPage.HasBackButton="False"
-    BarBackgroundColor="#116149">
+    BarBackgroundColor="#116149"
+    NavigationPage.HasNavigationBar="False">
 
     <local:Tickets />
     <local:Customers />

@@ -16,6 +16,7 @@ namespace ISPTicketMobileApp
     {
         private IQueryable<Models.Ticket> allTickets = null;
         private ObservableCollection<Models.Ticket> _tickets = new ObservableCollection<Models.Ticket>();
+        private IQueryable<Models.TicketStatus> _ts;
 
         public Tickets()
         {
@@ -26,12 +27,19 @@ namespace ISPTicketMobileApp
         {
             try
             {
-            App.realm_partition = App.realm_user.Id;
-            App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
-            App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
-            allTickets = App.realm_realm.All<Models.Ticket>();
-            _tickets = new ObservableCollection<Models.Ticket>(allTickets.ToList());
-            lv.ItemsSource = _tickets;
+                App.realm_partition = "PUBLIC";
+                App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
+                Realm tsrealm = await Realm.GetInstanceAsync(App.realm_config);
+                _ts = tsrealm.All<Models.TicketStatus>();
+
+                App.realm_partition = App.realm_user.Id;
+                App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
+                App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
+                allTickets = App.realm_realm.All<Models.Ticket>().OrderBy(i => i.TicketNumber);
+
+
+                _tickets = new ObservableCollection<Models.Ticket>(allTickets.ToList());
+                lv.ItemsSource = _tickets;
 
             } 
             catch (Exception ex)
