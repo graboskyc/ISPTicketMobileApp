@@ -41,5 +41,16 @@ namespace ISPTicketMobileApp
             }
             base.OnAppearing();
         }
+
+        private async void lv_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ListView lv = (ListView)sender;
+
+            // this assumes your List is bound to a List<Club>
+            Models.Ticket t = (Models.Ticket)lv.SelectedItem;
+
+            // assuiming Club has an Id property
+            await Navigation.PushAsync(new ViewTicket(t.Id));
+        }
     }
 }

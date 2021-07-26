@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ISPTicketMobileApp.ViewTicket">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="txt_ticketNum" Text="Customer" FontSize="24" HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="txt_comment" IsReadOnly="True"  />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

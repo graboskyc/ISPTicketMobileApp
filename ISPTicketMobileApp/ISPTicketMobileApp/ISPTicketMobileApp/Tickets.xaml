@@ -8,11 +8,11 @@
         <StackLayout>
             <Label Text="Tickets" FontSize="24" HorizontalOptions="CenterAndExpand" />
             <ScrollView>
-                <ListView x:Name="lv">
+                <ListView x:Name="lv" ItemSelected="lv_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="Ticket number: {Binding ticketNumber}"></Label>
+                                <Label Text="{Binding TicketNumber, StringFormat='Ticket Number {0}'}"></Label>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
