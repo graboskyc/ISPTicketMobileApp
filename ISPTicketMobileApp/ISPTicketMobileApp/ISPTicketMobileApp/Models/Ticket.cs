@@ -18,12 +18,12 @@ namespace ISPTicketMobileApp.Models
         public Int32 TicketNumber { get; set; }
 
         [MapTo("assignedTech")]
-        public Technician Technician { get; set; }
+        public ObjectId Technician { get; set; }
 
         [MapTo("customer")]
-        public Customer Customer { get; set; }
+        public ObjectId Customer { get; set; }
         [MapTo("status")]
-        public TicketStatus Status { get; set; }
+        public string Status { get; set; }
 
     }
 }
