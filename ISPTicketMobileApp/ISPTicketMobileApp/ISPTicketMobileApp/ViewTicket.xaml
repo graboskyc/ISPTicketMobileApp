@@ -9,11 +9,14 @@
             <Label Text="Status" FontSize="20" />
             <Entry x:Name="txt_status" />
 
-            <Label Text="Comment" FontSize="20" />
-            <Editor x:Name="txt_comment" AutoSize="TextChanges" FontSize="16" />
+            <Label Text="Customer" FontSize="20" />
+            <Button x:Name="txt_customer" />
 
             <Label Text="Assigned Tech" FontSize="20" />
             <Entry x:Name="txt_tech" />
+
+            <Label Text="Comment" FontSize="20" />
+            <Editor x:Name="txt_comment" AutoSize="TextChanges" FontSize="16" />
             
         </StackLayout>
     </ContentPage.Content>

@@ -17,6 +17,9 @@ namespace ISPTicketMobileApp
         private MongoDB.Bson.ObjectId _id;
         private IQueryable<Models.TicketStatus> allStatuses;
         //private ObservableCollection<Models.TicketStatus> _ts = new ObservableCollection<Models.TicketStatus>();
+        private Models.Customer _c;
+        private Models.Ticket _t;
+        private Models.Technician _me;
 
         public ViewTicket(MongoDB.Bson.ObjectId id)
         {
@@ -33,8 +36,8 @@ namespace ISPTicketMobileApp
                 App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
                 App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
 
-                Models.Ticket t = App.realm_realm.All<Models.Ticket>().Where(tix => tix.Id == _id).FirstOrDefault();
-                Models.Technician me = App.realm_realm.All<Models.Technician>().FirstOrDefault();
+                _t = App.realm_realm.All<Models.Ticket>().Where(tix => tix.Id == _id).FirstOrDefault();
+                _me = App.realm_realm.All<Models.Technician>().FirstOrDefault();
 
                 // Realms for Custmer and Status are GLOBAL so we need another instance
                 App.realm_partition = "PUBLIC";
@@ -45,12 +48,15 @@ namespace ISPTicketMobileApp
                 allStatuses = App.realm_realm.All<Models.TicketStatus>();
 
                 // Customer
-                Models.Customer c = App.realm_realm.All<Models.Customer>().Where(cus => cus.Id == t.Customer).FirstOrDefault();
+                _c = App.realm_realm.All<Models.Customer>().Where(cus => cus.Id == _t.Customer).FirstOrDefault();
 
-                txt_ticketNum.Text = "Ticket #" + t.TicketNumber.ToString();
-                txt_comment.Text = t.Comment;
-                txt_status.Text = t.Status;
-                txt_tech.Text = me.Name;
+                // set details
+                txt_ticketNum.Text = "Ticket #" + _t.TicketNumber.ToString();
+                txt_comment.Text = _t.Comment;
+                txt_status.Text = _t.Status;
+                txt_tech.Text = _me.Name;
+                txt_customer.Text = _c.Name;
+                txt_customer.Clicked += Txt_customer_Clicked;
 
             }
             catch (Exception ex)
@@ -59,6 +65,11 @@ namespace ISPTicketMobileApp
 
             }
             base.OnAppearing();
+        }
+
+        private async void Txt_customer_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ViewCustomer(_c.Id));
         }
     }
 }

@@ -30,7 +30,14 @@ namespace ISPTicketMobileApp
                 App.realm_config = new Realms.Sync.SyncConfiguration(App.realm_partition, App.realm_user);
                 App.realm_realm = await Realm.GetInstanceAsync(App.realm_config);
                 Models.Customer c = App.realm_realm.All<Models.Customer>().Where(cus => cus.Id == _id).FirstOrDefault();
+
                 txt_fullname.Text = c.Name;
+                txt_notes.Text = c.Notes;
+                txt_phone.Text = c.Phone;
+                txt_acct.Text = c.AccountNumber.ToString();
+                txt_addr.Text = c.Address;
+                txt_bd.Text = c.Birthday.ToString("dd/MM/yyyy");
+                txt_email.Text = c.Email;
 
             }
             catch (Exception ex)

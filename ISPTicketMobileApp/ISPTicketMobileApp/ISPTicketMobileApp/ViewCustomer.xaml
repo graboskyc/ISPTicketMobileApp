@@ -6,6 +6,24 @@
         <StackLayout>
             <Label Text="Customer" FontSize="24" HorizontalOptions="CenterAndExpand" />
             <Entry x:Name="txt_fullname" IsReadOnly="True"  />
+
+            <Label Text="Account #" FontSize="20" />
+            <Entry x:Name="txt_acct" />
+
+            <Label Text="Phone" FontSize="20" />
+            <Entry x:Name="txt_phone" />
+
+            <Label Text="Address" FontSize="20" />
+            <Entry x:Name="txt_addr" />
+
+            <Label Text="Email" FontSize="20" />
+            <Entry x:Name="txt_email" />
+
+            <Label Text="Birthday" FontSize="20" />
+            <Entry x:Name="txt_bd" />
+
+            <Label Text="Notes" FontSize="20" />
+            <Editor x:Name="txt_notes" AutoSize="TextChanges" FontSize="16" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
